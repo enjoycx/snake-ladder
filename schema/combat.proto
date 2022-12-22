@@ -1,0 +1,46 @@
+syntax = "proto3";
+package pb;
+option go_package = ".;pb";
+
+message Combat_MsgID {
+	enum MsgID {
+	  Heartbeat    =0;
+	  JoinRoom     =1;
+	  GetMap       =2;
+	  Rool         =3;
+	}
+}
+
+message JoinRoom{
+	string    uid         =1;
+	string    roomID      =2;
+}
+
+message CombatMap{
+	int32         length  =1;
+	repeated Item items   =2;
+}
+
+message CombatInfo{
+	CombatMap combatMap =1;
+	bool      rool      =2;
+	int32     pos       =3;
+	string    uid       =4;
+	bool      start     =5;
+}
+
+message Item{
+	int32 Type    =1;  //1 梯子 2蛇
+	int32 Target  =2;  //跳转到指定格子
+	int32 Pos     =3;  //所在位置·
+}
+
+message RoolReq{
+
+}
+
+message RoolRsp{
+	int32  Pos     =1;
+	bool   rool    =2;
+	string uid     =3;
+}
